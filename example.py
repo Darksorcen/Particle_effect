@@ -1,4 +1,5 @@
 import pygame, random, math
+from particles import Particle
 
 pygame.init()
 
@@ -8,9 +9,6 @@ clock = pygame.time.Clock()
 # [loc, velocity, timer, color]
 particles = []
 i = 0
-
-def check_particle_on_screen(particle):
-    return (particle[0][0] > screen.get_width() or particle[0][1] > screen.get_height() or particle[0][0] < 0 or particle[0][1] < 0)
 
 run = True
 while run:
@@ -25,16 +23,14 @@ while run:
     screen.fill((0, 0 ,0))
     random_color = [0, 0, random.randint(0, 255)]
 
-    particles.append([list(pos), [random.randint(0, 20) / 10 - 1, -2], random.randint(6, 8), random_color])
+    particles.append(Particle(list(pos), [random.randint(0, 20) / 10 - 1, random.randint(0, 10) / 5 - 1], random.randint(6, 8), random_color, [False, True, False, False]))
 
     for particle in particles:
-        particle[0][0] += math.cos(i)*particle[1][0]
-        particle[0][1] += math.sin(-i)*particle[1][1]
-        particle[2] -= 0.01
-        #particle[1][1] += 0.1
-        pygame.draw.rect(screen, particle[3], pygame.Rect(particle[0][0], particle[0][1], particle[2], particle[2]))
-        if particle[2] <= 0 or check_particle_on_screen(particle):
+        particle.update(special_movement=[math.cos(i), math.sin(-i)])
+        if particle.timer == 0 or particle.check_particle_on_screen(screen):
             particles.remove(particle)
+        else:
+            particle.display(screen)
     pygame.display.update(screen.get_rect())
     clock.tick(60)
     print(clock.get_fps())

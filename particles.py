@@ -1,3 +1,5 @@
+import pygame
+
 class Particle:
 
     def __init__(self, pos, velocity, timer, color, shape_bool):
@@ -15,7 +17,7 @@ class Particle:
     def set_shape(self, name, shape):
         self.shape[name] = shape
 
-    def update(self, gravity_force, special_movement=[1, 1]):
+    def update(self, gravity_force=0, special_movement=[1, 1]):
         self.pos[0] += self.velocity[0]*special_movement[0]
         self.pos[1] += self.velocity[1]*special_movement[1]
         self.timer -= 0.01
