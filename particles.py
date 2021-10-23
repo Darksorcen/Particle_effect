@@ -12,9 +12,7 @@ class Particle:
         self.shape = {"circle":[shape_bool[0]], 
                       "rect":[shape_bool[1], pygame.Rect(self.pos[0], self.pos[1], self.timer, self.timer)],
                       "triangle":[shape_bool[2], [[self.pos[0], self.pos[1]], [self.pos[0]+5, self.pos[1]-5], [self.pos[0]+10, self.pos[1]]]],
-                      "polygon":[shape_bool[3], [[self.pos[0], self.pos[1]], [self.pos[0]+4, self.pos[1]+4], 
-                                                [self.pos[1]+4, self.pos[0]+4], [self.pos[0]-4, self.pos[1]-4]]]}
-        self.original_shape = self.shape
+                      "polygon":[shape_bool[3], [[self.pos[0], self.pos[1]], [self.pos[0]+4, self.pos[1]+4], [self.pos[1]+4, self.pos[0]+4], [self.pos[0]-4, self.pos[1]-4]]]}
 
     def set_shape(self, name, shape):
         self.shape[name] = shape
@@ -28,8 +26,7 @@ class Particle:
         self.shape = {"circle":[self.shape_bool[0]], 
                       "rect":[self.shape_bool[1], pygame.Rect(self.pos[0], self.pos[1], self.timer, self.timer)],
                       "triangle":[self.shape_bool[2], [[self.pos[0], self.pos[1]], [self.pos[0]+5, self.pos[1]-5], [self.pos[0]+10, self.pos[1]]]],
-                      "polygon":[self.shape_bool[3], [[self.pos[0], self.pos[1]], [self.pos[0]+4, self.pos[1]+4], 
-                                                      [self.pos[1]+4, self.pos[0]+4], [self.pos[0]-4, self.pos[1]-4]]]}
+                      "polygon":[self.shape_bool[3], [[self.pos[0], self.pos[1]], [self.pos[0]+2, self.pos[1]+2], [self.pos[1]+4, self.pos[0]+4], [self.pos[0]-2, self.pos[1]-2]]]}
 
     def display(self, screen):
         for key, value in self.shape.items():

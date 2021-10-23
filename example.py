@@ -1,6 +1,4 @@
-import pygame
-import random
-import math
+import pygame, random, math
 from particles import Particle
 
 pygame.init()
@@ -8,7 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode((360, 360), pygame.RESIZABLE, 32)
 clock = pygame.time.Clock()
 
-# [loc, velocity, timer, color, shape]
+# [loc, velocity, timer, color]
 particles = []
 i = 0
 
@@ -25,8 +23,7 @@ while run:
     screen.fill((0, 0 ,0))
     random_color = [0, 0, random.randint(0, 255)]
 
-    particles.append(Particle(list(pos), [random.randint(0, 20) / 10 - 1, random.randint(0, 10) / 5 - 1], 
-                                          random.randint(6, 8), random_color, [False, True, False, False]))
+    particles.append(Particle(list(pos), [random.randint(0, 20) / 10 - 1, random.randint(0, 10) / 5 - 1], random.randint(6, 8), random_color, [False, True, False, False]))
 
     for particle in particles:
         particle.update(special_movement=[math.cos(i), math.sin(-i)])
@@ -36,4 +33,4 @@ while run:
             particle.display(screen)
     pygame.display.update(screen.get_rect())
     clock.tick(60)
-    #print(clock.get_fps())
+    print(clock.get_fps())
